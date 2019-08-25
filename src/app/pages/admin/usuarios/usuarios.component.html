@@ -1,0 +1,60 @@
+<nz-table #basicTable [nzData]="data | async">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Nombres</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Activo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.username }}</td>
+      <td>{{ data.nombres }}</td>
+      <td>{{ data.telefono }}</td>
+      <td>{{ data.direccion }}</td>
+      <td>{{ data.ciudad }}</td>
+      <td>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sur!!!!!!!!e?"
+          (nzOnConfirm)="confirm(data)"
+          (nzOnCancel)="cancel()"
+        >
+          <i
+            *ngIf="data.activo"
+            nz-icon
+            [nzType]="'check-circle'"
+            [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'#52c41a'"
+          ></i>
+        </a>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure!!!!!!!!!?"
+          (nzOnConfirm)="confirm(data)"
+          (nzOnCancel)="cancel()"
+          ><i
+            *ngIf="!data.activo"
+            nz-icon
+            [nzType]="'exclamation-circle'"
+            [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'#f5222d'"
+          ></i
+        ></a>
+      </td>
+      <td>
+        <a>Gllrm</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<pre>
+
+  {{ data | async | json }}
+</pre>
