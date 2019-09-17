@@ -1,0 +1,31 @@
+.demo-loadmore-list {
+  min-height: 350px;
+}
+.loadmore {
+  text-align: center;
+  margin-top: 12px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.box-messages {
+  display: flex;
+}
+
+.list-messages {
+  height: 75vh;
+  overflow: auto;
+}
+.display-message {
+  flex: 50;
+  height: 100%;
+  background-color: blueviolet;
+}
+.user-info {
+  flex: 20;
+  height: 100%;
+  background-color: azure;
+}
+nz-list-item[_ngcontent-gyd-c3] {
+  background-color: azure;
+}

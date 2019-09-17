@@ -1,0 +1,9 @@
+<h3 nz-title>Galería</h3>
+<nz-divider [nzDashed]="true"></nz-divider>
+<div class="container-box">
+  <div *ngFor="let image of albums; let i = index">
+    <div class="image">
+      <img [src]="image.thumb" (click)="open(i)" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="form">
+  <h1 nz-title align="center">Iniciar sesión</h1>
+  <nz-divider></nz-divider>
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="login-form mx-auto"
+    (ngSubmit)="submitForm(validateForm.value)"
+  >
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Digite su correo electronico">
+        <nz-input-group nzPrefixIcon="mail">
+          <input
+            type="text"
+            nz-input
+            formControlName="email"
+            placeholder="E-mail"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Ingresa tu contraseña!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Contraseña"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button class="login-form-button" [nzType]="'primary'">
+          Entrar
+        </button>
+        O
+        <a>registrate!</a>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

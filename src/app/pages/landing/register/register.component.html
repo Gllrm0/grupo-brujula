@@ -1,0 +1,146 @@
+<div class="form">
+  <h1 nz-title align="center">Registro</h1>
+  <nz-divider></nz-divider>
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    (ngSubmit)="submitForm(validateForm.value)"
+  >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzHasFeedback
+        nzValidatingTip="Validando..."
+        [nzErrorTip]="userErrorTpl"
+      >
+        <input nz-input formControlName="username" />
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            Por favor digite un nombre de usuario!
+          </ng-container>
+          <ng-container *ngIf="control.hasError('duplicated')">
+            El nombre de usuario ya ha sido registado!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzValidatingTip="Validando..."
+        nzHasFeedback
+        [nzErrorTip]="emailErrorTpl"
+      >
+        <input nz-input formControlName="email" type="email" />
+        <ng-template #emailErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('email')">
+            Digite un E-mail válido!
+          </ng-container>
+          <ng-container *ngIf="control.hasError('required')">
+            Por favor digite su correo!
+          </ng-container>
+          <ng-container *ngIf="control.hasError('duplicated')">
+            Este correo ya ha sido registrado anteriormente!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Nombres</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzErrorTip="Por favor digite su nombre!"
+        nzHasFeedback
+      >
+        <input nz-input formControlName="nombres" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Teléfono</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzErrorTip="Por favor digite su número de teléfono!"
+        nzHasFeedback
+      >
+        <input nz-input type="number" formControlName="telefono" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Ciudad</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzErrorTip="Por favor digite la ciudad de residencia!"
+        nzHasFeedback
+      >
+        <input nz-input formControlName="ciudad" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Dirección</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzErrorTip="Por favor digite la dirección!"
+        nzHasFeedback
+      >
+        <input nz-input formControlName="direccion" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+      <div>
+        <nz-form-control
+          [nzSpan]="12"
+          nzHasFeedback
+          nzErrorTip="Por favor ingrese su contraseña"
+        >
+          <input
+            nz-input
+            type="password"
+            formControlName="password"
+            (ngModelChange)="validateConfirmPassword()"
+          />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzHasFeedback
+        [nzErrorTip]="passwordErrorTpl"
+      >
+        <input
+          nz-input
+          type="password"
+          formControlName="confirm"
+          placeholder="confirm your password"
+        />
+        <ng-template #passwordErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            Por favor confirme su contraseña
+          </ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">
+            La contraseña no coincide
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control style="text-align: center">
+        <button
+          nz-button
+          class="login-form-button"
+          style="width: 150px;"
+          [nzType]="'primary'"
+        >
+          Registrarme
+        </button>
+        <br />
+        O
+        <a routerLink="/login">inicia sesión!</a>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

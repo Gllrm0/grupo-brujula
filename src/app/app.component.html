@@ -10,7 +10,7 @@
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-        <h1>Ant Design Of Angular</h1>
+        <h1>Grupo Brujula Admin</h1>
       </a>
     </div>
     <ul
@@ -19,23 +19,43 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Productos</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Publicidad</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Mensajes</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'user'"></i>
+        <span>Productos</span>
+        <a routerLink="productos"></a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'user'"></i>
+        <span>Publicidad</span>
+        <a routerLink="publicidad"></a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'inbox'"></i>
+        <span
+          >Mensajes
+          <nz-badge nzShowZero [nzCount]="messagesCounter$ | async"></nz-badge>
+        </span>
+        <a routerLink="mensajes"></a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'picture'"></i>
+        <span>Galeria</span>
+        <a routerLink="galeria"></a>
       </li>
       <li nz-menu-item nzMatchRouter>
         <i nz-icon [nzType]="'user'"></i>
         <span>Usuarios</span>
         <a routerLink="usuarios"></a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'home'"></i>
+        <span>WebSite</span>
+        <a routerLink="/"></a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon [nzType]="'logout'"></i>
+        <span>Salir</span>
+        <a (click)="logout()"></a>
       </li>
     </ul>
   </nz-sider>
@@ -58,3 +78,8 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+
+<pre>
+
+  {{ messagesCounter$ | async }}
+</pre>

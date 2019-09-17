@@ -1,0 +1,10 @@
+.shop:hover {
+  background-color: aqua;
+}
+
+.ant-card-meta-description::after {
+  content: "..." !important;
+  background-color: #ffba10;
+  border-color: black;
+  border-style: dotted;
+}

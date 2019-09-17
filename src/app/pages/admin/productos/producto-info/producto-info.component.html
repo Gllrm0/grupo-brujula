@@ -1,0 +1,77 @@
+<div nz-row>
+  <div nz-col nzSpan="9">
+    <img
+      alt="example"
+      [src]="producto.foto"
+      style="object-fit: cover; width: 300px;"
+    />
+  </div>
+  <div nz-col nzSpan="13">
+    <h3 nz-title>{{ producto.nombre }}</h3>
+    <nz-divider [nzDashed]="true"></nz-divider>
+    {{ producto.descripcion }}
+  </div>
+</div>
+<nz-divider></nz-divider>
+<h4 nz-title>Especificaciones técnicas</h4>
+<textarea
+  nzSpan="24"
+  nz-input
+  placeholder="Describa los detalles técnicos lo mas especifico posible"
+  [(ngModel)]="descripcion"
+  [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+></textarea>
+<nz-divider [nzDashed]="true"></nz-divider>
+<!-- <nz-upload
+  [nzBeforeUpload]="beforeUpload"
+  [(nzFileList)]="fileList"
+  [nzMultiple]="false"
+>
+  <button nz-button>
+    <i nz-icon nzType="upload"></i><span>Cargar diseño</span>
+  </button>
+</nz-upload> -->
+<div style="height: 100px">
+  <nz-upload
+    nzListType="picture-card"
+    [(nzFileList)]="fileList"
+    [nzShowUploadList]="showUploadList"
+    [nzPreview]="handlePreview"
+    [nzMultiple]="false"
+    [nzCustomRequest]="customRq"
+    [nzRemove]="removeFile"
+    [nzShowButton]="fileList.length < 1"
+  >
+    <i nz-icon nzType="plus"></i>
+    <div class="ant-upload-text">Cargar diseño</div>
+  </nz-upload>
+</div>
+<nz-modal
+  [nzVisible]="previewVisible"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false"
+>
+  <ng-template #modalContent>
+    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+  </ng-template>
+</nz-modal>
+<div *nzModalFooter>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="comprar()"
+    [disabled]="!descripcion || refList.length == 0"
+  >
+    <i nz-icon nzType="shopping" nzTheme="outline"></i>
+    Comprar
+  </button>
+</div>
+<ng-template #contentRef>
+  <nz-result
+    nzStatus="success"
+    nzTitle="Hemos recibido tu pedido."
+    nzSubTitle="En breve nos pondremos en contacto y te enviaremos una respuesta a tu correo electrónico."
+  >
+  </nz-result>
+</ng-template>

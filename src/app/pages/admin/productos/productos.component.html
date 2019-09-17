@@ -1,0 +1,50 @@
+<h2 nz-title>Productos</h2>
+<nz-divider></nz-divider>
+
+<nz-list
+  [nzDataSource]="productos$ | async"
+  [nzItemLayout]="'vertical'"
+  [nzRenderItem]="item"
+>
+  <ng-template #item let-item>
+    <nz-list-item
+      [nzContent]="item.descripcion"
+      [nzActions]="[starAction, likeAction, msgAction]"
+      [nzExtra]="extra"
+    >
+      <ng-template #starAction
+        ><i nz-icon nzType="star-o" style="margin-right: 8px;"></i>
+        156</ng-template
+      >
+      <ng-template #likeAction
+        ><i nz-icon nzType="like-o" style="margin-right: 8px;"></i>
+        156</ng-template
+      >
+      <ng-template #msgAction
+        ><i nz-icon nzType="message" style="margin-right: 8px;"></i>
+        2</ng-template
+      >
+      <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="item.description">
+        <ng-template #nzTitle
+          ><a href="{{ item.href }}">{{ item.nombre }}</a></ng-template
+        >
+      </nz-list-item-meta>
+      <ng-template #extra>
+        <img
+          width="272"
+          height="150"
+          alt="logo"
+          style="object-fit: cover"
+          [src]="item.foto"
+        />
+      </ng-template>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
+<!-- <div nz-row nzType="flex" nzJustify="center">
+  <ng-container *ngFor="let producto of productos$ | async">
+    <div nz-col nzXs="24" nzMd="12" nzLg="6" style="padding-bottom: 30px">
+      <app-producto-view [producto]="producto"></app-producto-view>
+    </div>
+  </ng-container>
+</div> -->

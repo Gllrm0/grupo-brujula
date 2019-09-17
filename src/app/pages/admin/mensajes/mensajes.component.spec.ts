@@ -1,17 +1,17 @@
 import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LandingComponent } from './landing.component';
+import { MensajesComponent } from './mensajes.component';
 
-describe('LandingComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+describe('MensajesComponent', () => {
+  let component: MensajesComponent;
+  let fixture: ComponentFixture<MensajesComponent>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingComponent ]
+      declarations: [ MensajesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LandingComponent);
+    fixture = TestBed.createComponent(MensajesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -1,0 +1,126 @@
+<div nz-row nzGutter="16">
+  <div nz-col nzSpan="9" class="list-messages">
+    <nz-card nzTitle="Mensajes">
+      <nz-list
+        class="demo-loadmore-list"
+        [nzDataSource]="list"
+        [nzItemLayout]="'horizontal'"
+        [nzLoading]="initLoading"
+        [nzRenderItem]="item"
+      >
+        <ng-template #item let-item>
+          <nz-list-item
+            [nzContent]="item.loading ? '' : nzContent"
+            [nzActions]="item.loading ? [] : [markAsReadAction, deleteAction]"
+          >
+            <nz-skeleton
+              [nzAvatar]="true"
+              [nzActive]="true"
+              [nzTitle]="false"
+              [nzLoading]="item.loading"
+            >
+              <ng-template #nzContent>
+                <span
+                  [ngStyle]="{
+                    color: !item.isRead ? '#40a9ff' : ''
+                  }"
+                  >{{ item.fecha | date: "medium" }}</span
+                >
+              </ng-template>
+              <ng-template #markAsReadAction
+                ><a (click)="markUnmarkAsRead(item)"
+                  ><i nz-icon nzType="flag" nzTheme="outline"></i></a
+              ></ng-template>
+              <ng-template #deleteAction
+                ><a (click)="delete(item.id)">
+                  <i
+                    nz-icon
+                    [nzType]="'delete'"
+                    [nzTheme]="'twotone'"
+                    [nzTwotoneColor]="'#eb2f96'"
+                    nz-tooltip
+                    nzTooltipTitle="Eliminar mensaje"
+                  ></i></a
+              ></ng-template>
+              <nz-list-item-meta
+                class="item-list"
+                [nzTitle]="nzTitle"
+                [nzAvatar]="avatar"
+                [nzDescription]="nzDescription"
+                (click)="showMessage(item)"
+                style="cursor: pointer;"
+              >
+                <ng-template #avatar>
+                  <nz-avatar
+                    [nzText]="item.email | slice: 0:1 | uppercase"
+                    [style.color]="item.email | stringColor: 'c'"
+                    [style.background-color]="item.email | stringColor: 'bg'"
+                  ></nz-avatar>
+                </ng-template>
+                <ng-template #nzTitle>
+                  <nz-badge [nzDot]="!item.isRead">
+                    <span
+                      [ngStyle]="{
+                        'font-weight': item.isRead ? 'normal' : 'bold'
+                      }"
+                      >{{ item.email }}</span
+                    >
+                  </nz-badge>
+                </ng-template>
+                <ng-template #nzDescription>
+                  <span
+                    [ngStyle]="{
+                      color: !item.isRead ? '#40a9ff' : '',
+                      'font-weight': item.isRead ? 'normal' : 'bold'
+                    }"
+                    >{{ item.producto?.nombre }}</span
+                  >
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-skeleton>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="11">
+    <nz-card
+      *ngIf="message; else noMessage"
+      [nzTitle]="message.producto.nombre"
+      [nzExtra]="message.fecha | date: 'short'"
+    >
+      <p nz-text>{{ message.descripcion }}</p>
+      <nz-divider nzDashed></nz-divider>
+      <img [src]="message.imagen" width="100%" alt="" />
+    </nz-card>
+    <ng-template #noMessage>
+      <nz-card>
+        <h1 nz-title>Seleccione un mensaje para visualizarlo</h1>
+      </nz-card>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="4">
+    <nz-card nzTitle="Información de Cliente" *ngIf="message">
+      <nz-descriptions [nzColumn]="1">
+        <nz-descriptions-item nzTitle="Usuario">{{
+          user.username
+        }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Nombres">
+          {{ user.nombres }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">
+          {{ user.email }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Teléfono">
+          {{ user.telefono }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Dirección">
+          {{ user.direccion }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Ciudad">
+          {{ user.ciudad }}
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </nz-card>
+  </div>
+</div>

@@ -3,17 +3,18 @@
     <tr>
       <th>Usuario</th>
       <th>Nombres</th>
+      <th>Email</th>
       <th>Teléfono</th>
       <th>Dirección</th>
       <th>Ciudad</th>
       <th>Activo</th>
-      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data">
       <td>{{ data.username }}</td>
       <td>{{ data.nombres }}</td>
+      <td>{{ data.email }}</td>
       <td>{{ data.telefono }}</td>
       <td>{{ data.direccion }}</td>
       <td>{{ data.ciudad }}</td>
@@ -45,11 +46,6 @@
             [nzTwotoneColor]="'#f5222d'"
           ></i
         ></a>
-      </td>
-      <td>
-        <a>Gllrm</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a>Delete</a>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,17 @@
+.container-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.image {
+  padding: 10px;
+  cursor: pointer;
+}
+.image > img {
+  border-radius: 1em;
+  width: 300px;
+}
+
+.image > img:hover {
+  opacity: 0.8;
+}
