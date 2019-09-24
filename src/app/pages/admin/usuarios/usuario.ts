@@ -6,4 +6,5 @@ export interface Usuario {
   telefono: string;
   direccion: string;
   ciudad: string;
+  isAdmin: boolean;
 }

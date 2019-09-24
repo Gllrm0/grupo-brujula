@@ -37,6 +37,12 @@ import { GaleriaComponent } from "./pages/landing/galeria/galeria.component";
 import { QuienesSomosComponent } from "./pages/landing/quienes-somos/quienes-somos.component";
 import { MensajesComponent } from './pages/admin/mensajes/mensajes.component';
 import { StringColorPipe } from './pages/admin/string-color.pipe';
+import { GaleriaUploadComponent } from './pages/admin/galeria-upload/galeria-upload.component';
+import { DropzoneDirective } from './pages/admin/galeria-upload/dropzone.directive';
+import { UploadTaskComponent } from './pages/admin/galeria-upload/upload-task/upload-task.component';
+import { SizePipe } from './pages/admin/galeria-upload/size.pipe';
+import { GaleriaAdminComponent } from './pages/admin/galeria-admin/galeria-admin.component';
+import { CardImgComponent } from './pages/admin/galeria-admin/card-img/card-img.component';
 
 registerLocaleData(es);
 
@@ -56,7 +62,13 @@ registerLocaleData(es);
     GaleriaComponent,
     QuienesSomosComponent,
     MensajesComponent,
-    StringColorPipe
+    StringColorPipe,
+    GaleriaUploadComponent,
+    DropzoneDirective,
+    UploadTaskComponent,
+    SizePipe,
+    GaleriaAdminComponent,
+    CardImgComponent
   ],
   imports: [
     BrowserModule,

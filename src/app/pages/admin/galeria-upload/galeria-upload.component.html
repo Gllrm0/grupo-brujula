@@ -1,0 +1,18 @@
+<div
+  class="dropzone"
+  dropzone
+  (hovered)="toggleHover($event)"
+  (dropped)="onDrop($event)"
+  [class.hovering]="isHovering"
+>
+  <h3>Arrastre las imagenes a esta área para subirlas</h3>
+  <p>Solo se permiten archivos *.jpg</p>
+</div>
+
+<h3 *ngIf="files.length > 0">Imagenes Subidas</h3>
+
+<div style="display: flex; flex-wrap: wrap;">
+  <div *ngFor="let file of files" style="padding: 10px">
+    <upload-task [file]="file"></upload-task>
+  </div>
+</div>

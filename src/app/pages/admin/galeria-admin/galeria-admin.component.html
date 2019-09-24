@@ -1,0 +1,6 @@
+<div class="gallery-wrapper">
+  <div *ngFor="let img of images | async">
+    <card-img [img]="img" [tags]="products"></card-img>
+  </div>
+</div>
+<pre>{{ user$ | async | json }}</pre>

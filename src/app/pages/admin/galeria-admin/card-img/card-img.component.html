@@ -1,0 +1,68 @@
+<div class="card-img" [class.is-hidden]="!img.show" *ngIf="showCard">
+  <div class="buttons-wrap" *ngIf="(user$ | async)?.isAdmin">
+    <button
+      nz-button
+      nzShape="circle"
+      nzGhost
+      (click)="show()"
+      *ngIf="!img.show"
+    >
+      <i
+        nz-icon
+        nzGhost
+        nzType="eye-invisible"
+        nzTheme="twotone"
+        nzTwotoneColor="#595959"
+      ></i>
+    </button>
+    <button
+      nz-button
+      nzShape="circle"
+      nzGhost
+      (click)="hide()"
+      *ngIf="img.show"
+    >
+      <i
+        nz-icon
+        nzGhost
+        nzType="eye"
+        nzTheme="twotone"
+        nzTwotoneColor="#52c41a"
+      ></i>
+    </button>
+    <button nz-button nzShape="circle" nzGhost (click)="delete()">
+      <i
+        nz-icon
+        nzGhost
+        nzType="delete"
+        nzTheme="twotone"
+        nzTwotoneColor="#f5222d"
+      ></i>
+    </button>
+  </div>
+  <div>
+    <img [src]="img.downloadUrl" class="img-preview" />
+    <input
+      *ngIf="(user$ | async)?.isAdmin"
+      style="margin-top: 10px"
+      nz-input
+      placeholder="Descripción"
+      [(ngModel)]="img.description"
+      (blur)="updateDescription()"
+    />
+    <div class="img-description" *ngIf="!(user$ | async)?.isAdmin">
+      <span>{{ img.description }}</span>
+    </div>
+    <div class="tag-wrapper">
+      <strong>Etiquetas: </strong>
+      <nz-tag
+        *ngFor="let tag of tags"
+        [nzMode]="(user$ | async)?.isAdmin ? 'checkable' : 'default'"
+        [nzChecked]="selectedTags.indexOf(tag.id) > -1"
+        (nzCheckedChange)="handleChange($event, tag.id)"
+      >
+        {{ tag.nombre }}
+      </nz-tag>
+    </div>
+  </div>
+</div>

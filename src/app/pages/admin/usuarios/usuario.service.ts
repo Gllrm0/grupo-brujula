@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Usuario } from "./usuario";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
@@ -12,6 +12,7 @@ import { NzModalService } from "ng-zorro-antd/modal";
 })
 export class UsuarioService {
   usuarios: Observable<any[]>;
+
   constructor(
     private db: AngularFirestore,
     private fireAuth: AngularFireAuth,
@@ -19,6 +20,9 @@ export class UsuarioService {
     private modalService: NzModalService
   ) {}
 
+  currentUser = this.fireAuth.user.pipe(
+    switchMap(authUser => this.getUserById(authUser.uid))
+  );
   list(): Observable<Usuario[]> {
     return this.db
       .collection<Usuario>("usuarios")
@@ -66,23 +70,35 @@ export class UsuarioService {
       });
   }
 
+  getUserById(id: string) {
+    return this.db
+      .collection("usuarios")
+      .doc<Usuario>(id)
+      .valueChanges();
+  }
+
   async addUser(user) {
     const email = user.email.toLowerCase().trim();
+    const userCreated = await this.fireAuth.auth.createUserWithEmailAndPassword(
+      email,
+      user.password
+    );
+    const id = userCreated.user.uid;
     const newUser = {
       ...user,
       activo: true,
       isAdmin: false,
-      email
-    };
-    await this.fireAuth.auth.createUserWithEmailAndPassword(
       email,
-      newUser.password
-    );
+      id
+    };
     delete newUser.confirm;
     delete newUser.password;
     console.log(newUser);
 
-    return this.db.collection("usuarios").add(newUser);
+    return this.db
+      .collection("usuarios")
+      .doc(id)
+      .set(newUser);
   }
 
   login({ email, password }) {

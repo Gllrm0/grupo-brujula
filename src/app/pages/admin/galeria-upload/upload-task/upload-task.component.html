@@ -1,0 +1,72 @@
+<div class="task-card">
+  <div class="upload-status" *ngIf="snapshot | async as snap">
+    <div class="buttons-wrap">
+      <button nz-button nzShape="circle" nzGhost (click)="task.resume()">
+        <i
+          nz-icon
+          nzType="play-circle"
+          nzTheme="twotone"
+          nzTwotoneColor="#52c41a"
+        ></i>
+      </button>
+      <button nz-button nzShape="circle" nzGhost (click)="task.pause()">
+        <i
+          nz-icon
+          nzGhost
+          nzType="pause-circle"
+          nzTheme="twotone"
+          nzTwotoneColor="#faad14"
+        ></i>
+      </button>
+      <button nz-button nzShape="circle" nzGhost (click)="task.cancel()">
+        <i
+          nz-icon
+          nzGhost
+          nzType="stop"
+          nzTheme="twotone"
+          nzTwotoneColor="#f5222d"
+        ></i>
+      </button>
+      <div>
+        {{ snap.bytesTransferred | size }}/{{ snap.totalBytes | size }} MB
+      </div>
+    </div>
+    <div *ngIf="percentage | async as pct">
+      <nz-progress
+        [nzPercent]="pct | number: '.0-0'"
+        nzSize="small"
+      ></nz-progress>
+    </div>
+  </div>
+  <br />
+
+  <div *ngIf="downloadURL as url; else uploadingImg">
+    <img [src]="url" class="img-preview" /><br />
+    <input
+      style="margin-top: 10px"
+      nz-input
+      placeholder="Descripción"
+      [(ngModel)]="description"
+      (blur)="updateDescription($event)"
+    />
+    <div class="tag-wrapper">
+      <strong>Etiquetas: </strong>
+      <nz-tag
+        *ngFor="let tag of products | async"
+        nzMode="checkable"
+        [nzChecked]="selectedTags.indexOf(tag) > -1"
+        (nzCheckedChange)="handleChange($event, tag.id)"
+      >
+        {{ tag.nombre }}
+      </nz-tag>
+    </div>
+  </div>
+</div>
+
+<ng-template #uploadingImg>
+  <nz-skeleton
+    [nzTitle]="false"
+    [nzActive]="true"
+    [nzParagraph]="{ rows: 8, width: 320 }"
+  ></nz-skeleton>
+</ng-template>

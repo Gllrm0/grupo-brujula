@@ -13,6 +13,8 @@ import { AdminGuard } from "./pages/admin/admin.guard";
 import { GaleriaComponent } from "./pages/landing/galeria/galeria.component";
 import { QuienesSomosComponent } from "./pages/landing/quienes-somos/quienes-somos.component";
 import { MensajesComponent } from "./pages/admin/mensajes/mensajes.component";
+import { GaleriaUploadComponent } from "./pages/admin/galeria-upload/galeria-upload.component";
+import { GaleriaAdminComponent } from "./pages/admin/galeria-admin/galeria-admin.component";
 
 const routes: Routes = [
   // { path: "", pathMatch: "full", redirectTo: "/app" },
@@ -23,7 +25,7 @@ const routes: Routes = [
       { path: "", component: ContentComponent },
       { path: "login", component: LoginComponent },
       { path: "registro", component: RegisterComponent },
-      { path: "galeria", component: GaleriaComponent },
+      { path: "galeria", component: GaleriaAdminComponent },
       { path: "quienes-somos", component: QuienesSomosComponent }
     ]
   },
@@ -35,6 +37,13 @@ const routes: Routes = [
       { path: "", component: UsuariosComponent },
       { path: "usuarios", component: UsuariosComponent },
       { path: "mensajes", component: MensajesComponent },
+      {
+        path: "galeria",
+        children: [
+          { path: "", component: GaleriaAdminComponent },
+          { path: "upload", component: GaleriaUploadComponent }
+        ]
+      },
       {
         path: "productos",
         children: [
