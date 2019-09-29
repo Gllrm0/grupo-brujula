@@ -1,5 +1,9 @@
-<div class="card-img" [class.is-hidden]="!img.show" *ngIf="showCard">
-  <div class="buttons-wrap" *ngIf="(user$ | async)?.isAdmin">
+<div
+  class="card-img"
+  [class.is-hidden]="!img.show"
+  *ngIf="(user$ | async) ? true : showCard"
+>
+  <div class="buttons-wrap" *ngIf="user$ | async">
     <button
       nz-button
       nzShape="circle"
@@ -41,23 +45,23 @@
     </button>
   </div>
   <div>
-    <img [src]="img.downloadUrl" class="img-preview" />
+    <img [src]="img.downloadUrl" class="img-preview" (click)="open.emit(img)" />
     <input
-      *ngIf="(user$ | async)?.isAdmin"
+      *ngIf="user$ | async"
       style="margin-top: 10px"
       nz-input
       placeholder="Descripción"
       [(ngModel)]="img.description"
       (blur)="updateDescription()"
     />
-    <div class="img-description" *ngIf="!(user$ | async)?.isAdmin">
+    <div class="img-description" *ngIf="!user$ | async">
       <span>{{ img.description }}</span>
     </div>
     <div class="tag-wrapper">
       <strong>Etiquetas: </strong>
       <nz-tag
-        *ngFor="let tag of tags"
-        [nzMode]="(user$ | async)?.isAdmin ? 'checkable' : 'default'"
+        *ngFor="let tag of tags$ | async"
+        [nzMode]="(user$ | async) ? 'checkable' : 'default'"
         [nzChecked]="selectedTags.indexOf(tag.id) > -1"
         (nzCheckedChange)="handleChange($event, tag.id)"
       >

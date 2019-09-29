@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorage } from "@angular/fire/storage";
-import { map } from "rxjs/operators";
+import { map, filter } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { promise } from "protractor";
 
@@ -31,6 +31,23 @@ export class GaleriaService {
             };
           });
         })
+      );
+  }
+
+  getAlbums() {
+    return this.db
+      .collection<Imagen>("galeria")
+      .valueChanges()
+      .pipe(
+        map(images => images.filter(img => img.show)),
+        map(images =>
+          images.map(image => ({
+            src: image.downloadUrl,
+            caption: image.description,
+            thumb: image.downloadUrl,
+            show: image.show
+          }))
+        )
       );
   }
 

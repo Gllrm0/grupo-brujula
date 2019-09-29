@@ -1,4 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { Imagen, GaleriaService } from "../../galeria-upload/galeria.service";
 import { Producto } from "../../productos/producto";
 import { ProductoService } from "../../productos/producto.service";
@@ -6,21 +13,26 @@ import { Observable } from "rxjs";
 import { NzMessageService } from "ng-zorro-antd";
 import { UsuarioService } from "../../usuarios/usuario.service";
 import { Usuario } from "../../usuarios/usuario";
-import { map } from "rxjs/operators";
+import { map, tap, shareReplay, share } from "rxjs/operators";
+import { IAlbum } from "ngx-lightbox";
 
 @Component({
   selector: "card-img",
   templateUrl: "./card-img.component.html",
   styleUrls: ["./card-img.component.css"]
 })
-export class CardImgComponent implements OnInit {
+export class CardImgComponent implements OnInit, OnChanges {
   @Input() img: Imagen;
   @Input() tags: Producto[];
   selectedTags: string[] = [];
   products: Observable<Producto[]>;
   description: string;
-  showCard: boolean = true;
-  user$: Observable<Usuario>;
+  showCard: boolean;
+  user$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
+  tags$: Observable<Producto[]>;
+  @Output() open = new EventEmitter();
+  albums$: Observable<IAlbum[]>;
 
   constructor(
     private productoService: ProductoService,
@@ -32,7 +44,22 @@ export class CardImgComponent implements OnInit {
   ngOnInit() {
     this.products = this.productoService.getProducts();
     this.selectedTags = this.img.tags || [];
-    this.user$ = this.userService.currentUser;
+    this.user$ = this.userService.currentUser.pipe(
+      map(user => (user && user.isAdmin ? user.isAdmin : false)),
+      tap(user => console.count("before shared")),
+      shareReplay(5)
+    );
+  }
+
+  ngOnChanges(e) {
+    this.tags$ = this.userService.currentUser.pipe(
+      map(user => {
+        return user && user.isAdmin
+          ? [...this.tags]
+          : [...this.tags.filter(tag => this.img.tags.includes(tag.id))];
+      })
+    );
+    this.showCard = this.img.show;
   }
 
   async handleChange(checked: boolean, tag: string): Promise<void> {
@@ -70,11 +97,5 @@ export class CardImgComponent implements OnInit {
       this.msgService.success("Imagen eliminada");
       this.showCard = false;
     });
-  }
-
-  getTagMode() {
-    let mode;
-    this.user$.toPromise().then(user => (mode = user.isAdmin));
-    return mode ? "checkable" : "default";
   }
 }

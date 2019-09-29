@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Usuario } from "./usuario";
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, of } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { NzModalService } from "ng-zorro-antd/modal";
+import { User } from "firebase";
 
 @Injectable({
   providedIn: "root"
@@ -20,8 +21,8 @@ export class UsuarioService {
     private modalService: NzModalService
   ) {}
 
-  currentUser = this.fireAuth.user.pipe(
-    switchMap(authUser => this.getUserById(authUser.uid))
+  currentUser = this.fireAuth.authState.pipe(
+    switchMap(authUser => this.getUser(authUser))
   );
   list(): Observable<Usuario[]> {
     return this.db
@@ -75,6 +76,14 @@ export class UsuarioService {
       .collection("usuarios")
       .doc<Usuario>(id)
       .valueChanges();
+  }
+  getUser(user: User): Observable<Usuario | null> {
+    return user
+      ? this.db
+          .collection("usuarios")
+          .doc<Usuario>(user.uid)
+          .valueChanges()
+      : of<null>(null);
   }
 
   async addUser(user) {
