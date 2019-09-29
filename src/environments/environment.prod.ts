@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyCAjI33-354LJW4187ljAb4x18XdQ98n50",
-    authDomain: "grupo-brujula.firebaseapp.com",
-    databaseURL: "https://grupo-brujula.firebaseio.com",
-    projectId: "grupo-brujula",
-    storageBucket: "grupo-brujula.appspot.com",
-    messagingSenderId: "12794509470",
-    appId: "1:12794509470:web:2e68c16bb7f890ec"
+    apiKey: "AIzaSyB6CmSdQNzkKmoLBvfKfQmSHpPY1GyQEoM",
+    authDomain: "grupo-brujula-93466.firebaseapp.com",
+    databaseURL: "https://grupo-brujula-93466.firebaseio.com",
+    projectId: "grupo-brujula-93466",
+    storageBucket: "grupo-brujula-93466.appspot.com",
+    messagingSenderId: "83268303021",
+    appId: "1:83268303021:web:66f2c9347675f95f53ee24",
+    measurementId: "G-3G2EZP6EJB"
   }
 };

@@ -35,14 +35,14 @@ import { ProductoFormComponent } from "./pages/admin/productos/producto-form/pro
 import { ProductoInfoComponent } from "./pages/admin/productos/producto-info/producto-info.component";
 import { GaleriaComponent } from "./pages/landing/galeria/galeria.component";
 import { QuienesSomosComponent } from "./pages/landing/quienes-somos/quienes-somos.component";
-import { MensajesComponent } from './pages/admin/mensajes/mensajes.component';
-import { StringColorPipe } from './pages/admin/string-color.pipe';
-import { GaleriaUploadComponent } from './pages/admin/galeria-upload/galeria-upload.component';
-import { DropzoneDirective } from './pages/admin/galeria-upload/dropzone.directive';
-import { UploadTaskComponent } from './pages/admin/galeria-upload/upload-task/upload-task.component';
-import { SizePipe } from './pages/admin/galeria-upload/size.pipe';
-import { GaleriaAdminComponent } from './pages/admin/galeria-admin/galeria-admin.component';
-import { CardImgComponent } from './pages/admin/galeria-admin/card-img/card-img.component';
+import { MensajesComponent } from "./pages/admin/mensajes/mensajes.component";
+import { StringColorPipe } from "./pages/admin/string-color.pipe";
+import { GaleriaUploadComponent } from "./pages/admin/galeria-upload/galeria-upload.component";
+import { DropzoneDirective } from "./pages/admin/galeria-upload/dropzone.directive";
+import { UploadTaskComponent } from "./pages/admin/galeria-upload/upload-task/upload-task.component";
+import { SizePipe } from "./pages/admin/galeria-upload/size.pipe";
+import { GaleriaAdminComponent } from "./pages/admin/galeria-admin/galeria-admin.component";
+import { CardImgComponent } from "./pages/admin/galeria-admin/card-img/card-img.component";
 
 registerLocaleData(es);
 
@@ -87,7 +87,10 @@ registerLocaleData(es);
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
-    { provide: StorageBucket, useValue: "gs://grupo-brujula.appspot.com" },
+    {
+      provide: StorageBucket,
+      useValue: "gs://grupo-brujula-93466.appspot.com"
+    },
     { provide: NZ_MESSAGE_CONFIG, useValue: { nzTop: 60 } }
   ],
   bootstrap: [HomeComponent],
