@@ -91,12 +91,11 @@ export class ProductoInfoComponent implements OnInit {
       imagen: await this.refList[0].getDownloadURL(),
       productoId: this.producto.id,
       fecha: new Date(),
-      email: this.afAuth.auth.currentUser.email
+      email: this.afAuth.auth.currentUser.email,
+      isRead: false
     };
     await this.productoService.comprarProducto(producto);
     this.isSubmit = true;
-    console.log(this.resultTemplate);
-
     this.modalService.success({ nzContent: this.resultTemplate });
   }
 }

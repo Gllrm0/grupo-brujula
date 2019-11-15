@@ -23,14 +23,10 @@ export class GaleriaUploadComponent {
   ) {}
 
   toggleHover(event: boolean) {
-    console.log(event);
-
     this.isHovering = event;
   }
 
   onDrop(files: FileList) {
-    console.log(files);
-
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
     }

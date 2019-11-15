@@ -43,6 +43,10 @@ import { UploadTaskComponent } from "./pages/admin/galeria-upload/upload-task/up
 import { SizePipe } from "./pages/admin/galeria-upload/size.pipe";
 import { GaleriaAdminComponent } from "./pages/admin/galeria-admin/galeria-admin.component";
 import { CardImgComponent } from "./pages/admin/galeria-admin/card-img/card-img.component";
+import { PublicidadComponent } from './pages/admin/publicidad/publicidad.component';
+import { ImgCardComponent } from './pages/admin/publicidad/img-card/img-card.component';
+import { CarouselComponent } from './pages/landing/content/carousel/carousel.component';
+import { CarouselSideComponent } from './pages/landing/content/carousel-side/carousel-side.component';
 
 registerLocaleData(es);
 
@@ -68,7 +72,11 @@ registerLocaleData(es);
     UploadTaskComponent,
     SizePipe,
     GaleriaAdminComponent,
-    CardImgComponent
+    CardImgComponent,
+    PublicidadComponent,
+    ImgCardComponent,
+    CarouselComponent,
+    CarouselSideComponent
   ],
   imports: [
     BrowserModule,

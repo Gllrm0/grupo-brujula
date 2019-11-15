@@ -28,13 +28,10 @@ export class AdminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log("guard");
     return this.usuarioService.isAdmin().pipe(
       take(1),
       map(isAdmin => {
         if (!isAdmin) {
-          console.log();
-
           this.router.navigateByUrl("/");
           return false;
         }

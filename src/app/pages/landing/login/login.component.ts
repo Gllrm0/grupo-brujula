@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(data): void {
-    console.log(data);
-
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();

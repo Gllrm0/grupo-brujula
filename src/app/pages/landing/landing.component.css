@@ -31,6 +31,7 @@ footer {
 
 footer p {
   margin-bottom: 0.25rem;
+  text-align: center;
 }
 
 .bd-placeholder-img {
@@ -50,4 +51,17 @@ footer p {
 
 .main {
   margin-top: 50px;
+}
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+h3 {
+  color: #fff;
 }

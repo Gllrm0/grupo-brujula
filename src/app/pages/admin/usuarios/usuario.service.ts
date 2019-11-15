@@ -102,8 +102,6 @@ export class UsuarioService {
     };
     delete newUser.confirm;
     delete newUser.password;
-    console.log(newUser);
-
     return this.db
       .collection("usuarios")
       .doc(id)
@@ -115,8 +113,6 @@ export class UsuarioService {
       .signInWithEmailAndPassword(email, password)
       .then(user => {
         this.getUserByEmail(user.user.email).then(user => {
-          console.log(user);
-
           if (user.activo) {
             this.router.navigateByUrl("/");
           } else {
@@ -134,8 +130,6 @@ export class UsuarioService {
     return this.fireAuth.authState.pipe(
       switchMap(state => this.getUserByEmail(state.email)),
       map(user => {
-        console.log(user);
-
         return <boolean>user.isAdmin;
       })
     );

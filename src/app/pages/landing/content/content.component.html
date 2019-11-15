@@ -1,22 +1,19 @@
-<!-- <section class="jumbotron text-center">
-  <div class="container">
-    <h1 class="jumbotron-heading">Album example</h1>
-    <p class="lead text-muted">
-      Something short and leading about the collection below—its contents, the
-      creator, etc. Make it short and sweet, but not too short so folks don’t
-      simply skip over it entirely.
-    </p>
-    <p>
-      <a href="#" class="btn btn-primary my-2">Main call to action</a>
-      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-    </p>
+<div class="container-fluid">
+  <div class="car">
+    <app-carousel></app-carousel>
   </div>
-</section> -->
-
-<div class="container-content">
-  <ng-container *ngFor="let producto of productos$ | async">
-    <div class="card" style="padding-bottom: 30px">
-      <app-producto-view [producto]="producto"></app-producto-view>
+  <div style="display: flex;">
+    <div style="flex: 1;">
+      <div class="container-content">
+        <ng-container *ngFor="let producto of productos$ | async">
+          <div class="card" style="padding-bottom: 30px">
+            <app-producto-view [producto]="producto"></app-producto-view>
+          </div>
+        </ng-container>
+      </div>
     </div>
-  </ng-container>
+    <div style="width: 200px; ">
+      <app-carousel-side></app-carousel-side>
+    </div>
+  </div>
 </div>

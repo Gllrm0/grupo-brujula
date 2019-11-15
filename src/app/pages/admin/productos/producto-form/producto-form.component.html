@@ -1,67 +1,61 @@
-<nz-skeleton
-  [nzLoading]="loading"
-  [nzActive]="true"
-  [nzTitle]="{ width: 150 }"
-  [nzParagraph]="{ rows: 7, width: [600, 600, 600, 600, 600, 600, 600] }"
+<h2 nz-title>{{ (pro | async)?.nombre || "Nuevo Producto" }}</h2>
+<nz-divider></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="9">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nombre"
+          >Nombre</nz-form-label
+        >
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Muy corto">
+          <input nz-input formControlName="nombre" id="nombre" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="descripcion" nzRequired
+          >Descripción</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="No puede estar vacio, agregue una descripción del producto"
+        >
+          <textarea
+            nz-input
+            id="descripcion"
+            formControlName="descripcion"
+            [nzAutosize]="{ minRows: 4, maxRows: 8 }"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="foto" nzRequired>
+          <span>
+            Foto
+          </span>
+        </nz-form-label>
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Por favor agregue la url de la foto"
+        >
+          <nz-upload [nzCustomRequest]="customRq">
+            <button nz-button type="button">
+              <i nz-icon nzType="upload"></i><span>Subir foto</span>
+            </button>
+          </nz-upload>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary">Guardar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div nz-col nzSpan="12">
+    <img [src]="(pro | async)?.foto" alt="" srcset="" style="height: 500px" />
+  </div>
+</div>
+
 >
-  <h2 nz-title>{{ producto?.nombre }}</h2>
-  <nz-divider></nz-divider>
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nombre"
-        >Nombre</nz-form-label
-      >
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Muy corto">
-        <input
-          nz-input
-          formControlName="nombre"
-          id="nombre"
-          [ngModel]="producto?.nombre"
-        />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="descripcion" nzRequired
-        >Descripción</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="No puede estar vacio, agregue una descripción del producto"
-      >
-        <textarea
-          nz-input
-          id="descripcion"
-          formControlName="descripcion"
-          [nzAutosize]="{ minRows: 4, maxRows: 8 }"
-          [ngModel]="producto?.descripcion"
-        ></textarea>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="foto" nzRequired>
-        <span>
-          Foto
-        </span>
-      </nz-form-label>
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="Por favor agregue la url de la foto"
-      >
-        <input
-          nz-input
-          id="foto"
-          formControlName="foto"
-          [ngModel]="producto?.foto"
-        />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item nz-row class="register-area">
-      <nz-form-control [nzSpan]="14" [nzOffset]="6">
-        <button nz-button nzType="primary">Guardar</button>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
-  >
-</nz-skeleton>

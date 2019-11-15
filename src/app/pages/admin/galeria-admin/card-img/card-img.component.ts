@@ -46,7 +46,6 @@ export class CardImgComponent implements OnInit, OnChanges {
     this.selectedTags = this.img.tags || [];
     this.user$ = this.userService.currentUser.pipe(
       map(user => (user && user.isAdmin ? user.isAdmin : false)),
-      tap(user => console.count("before shared")),
       shareReplay(5)
     );
   }
@@ -63,14 +62,11 @@ export class CardImgComponent implements OnInit, OnChanges {
   }
 
   async handleChange(checked: boolean, tag: string): Promise<void> {
-    console.log("init", [...this.selectedTags]);
 
     if (checked) {
       this.selectedTags.push(tag);
-      console.log("yes", [...this.selectedTags]);
     } else {
       this.selectedTags = this.selectedTags.filter(t => t !== tag);
-      console.log("no", [...this.selectedTags]);
     }
     await this.GaleriaService.update(this.img.id, {
       tags: this.selectedTags

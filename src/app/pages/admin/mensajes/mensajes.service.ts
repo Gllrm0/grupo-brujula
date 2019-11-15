@@ -27,8 +27,6 @@ export class MensajesService {
   }
 
   markAsRead(id: string, isRead = true) {
-    console.log(id);
-    console.log("service");
     return this.mensajesRef.doc(id).update({ isRead });
   }
 

@@ -23,8 +23,6 @@ export class ProductoService {
     return this.productosRef.snapshotChanges().pipe(
       map(snaps => {
         return snaps.map(snap => {
-          console.log(snap);
-
           return <Producto>{
             id: snap.payload.doc.id,
             ...snap.payload.doc.data()
@@ -36,6 +34,10 @@ export class ProductoService {
 
   getProductById(id: string) {
     return this.productosRef.doc<Producto>(id).valueChanges();
+  }
+
+  addProduct(product: Producto) {
+    return this.productosRef.add(product);
   }
 
   updateProduct(id: string, data: Producto) {
@@ -51,9 +53,12 @@ export class ProductoService {
     return this.comprasRef.add(producto);
   }
 
+  deleteProductById(id: string) {
+    return this.productosRef.doc(id).delete();
+  }
+
   uploadImage(item: UploadXHRArgs) {
     if (!item) return;
-    console.log(item);
     const filePath = `productos/${item.file.uid}-${item.file.name}`;
     return this.storage.upload(filePath, item.file).snapshotChanges();
   }

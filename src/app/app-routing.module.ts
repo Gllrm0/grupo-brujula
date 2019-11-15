@@ -15,6 +15,7 @@ import { QuienesSomosComponent } from "./pages/landing/quienes-somos/quienes-som
 import { MensajesComponent } from "./pages/admin/mensajes/mensajes.component";
 import { GaleriaUploadComponent } from "./pages/admin/galeria-upload/galeria-upload.component";
 import { GaleriaAdminComponent } from "./pages/admin/galeria-admin/galeria-admin.component";
+import { PublicidadComponent } from "./pages/admin/publicidad/publicidad.component";
 
 const routes: Routes = [
   // { path: "", pathMatch: "full", redirectTo: "/app" },
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: "", component: UsuariosComponent },
       { path: "usuarios", component: UsuariosComponent },
       { path: "mensajes", component: MensajesComponent },
+      { path: "publicidad", component: PublicidadComponent },
       {
         path: "galeria",
         children: [
@@ -48,8 +50,8 @@ const routes: Routes = [
         path: "productos",
         children: [
           { path: "", component: ProductosComponent },
-          { path: ":id/edit", component: ProductoFormComponent },
-          { path: "add", component: ProductoFormComponent }
+          { path: "add", component: ProductoFormComponent },
+          { path: ":id", component: ProductoFormComponent }
         ]
       }
     ]

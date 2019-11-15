@@ -23,8 +23,6 @@ export class GaleriaService {
       .pipe(
         map(snaps => {
           return snaps.map(snap => {
-            console.log(snap);
-
             return <Imagen>{
               id: snap.payload.doc.id,
               ...snap.payload.doc.data()

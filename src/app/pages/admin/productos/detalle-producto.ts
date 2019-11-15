@@ -7,4 +7,5 @@ export interface DetalleProducto {
   descripcion: string;
   imagen: string;
   fecha: Date;
+  isRead: boolean;
 }

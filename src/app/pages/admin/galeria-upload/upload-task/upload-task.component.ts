@@ -51,7 +51,6 @@ export class UploadTaskComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
 
     this.snapshot = this.task.snapshotChanges().pipe(
-      tap(console.log),
       finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
         const img = {
@@ -74,9 +73,7 @@ export class UploadTaskComponent implements OnInit {
   }
 
   async updateDescription(event) {
-    console.log(event);
     await this.docRef.update({ description: this.description });
-    console.log("updated");
   }
 
   async handleChange(checked: boolean, tag: string): Promise<void> {

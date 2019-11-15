@@ -1,0 +1,38 @@
+<div nz-row nzGutter="16">
+  <div nz-col nzSpan="12">
+    <nz-card nzTitle="Superior">
+      <nz-upload [nzCustomRequest]="customReq">
+        <button nz-button (click)="place='top'">
+          <i nz-icon nzType="upload"></i><span>Subir Imagen</span>
+        </button>
+      </nz-upload>
+      <nz-divider></nz-divider>
+      <div class="img-wrapper">
+        <app-img-card
+          *ngFor="let img of imagesTop"
+          alt=""
+          [imagen]="img"
+          (deleteImage)="onDelete($event)"
+        ></app-img-card>
+      </div>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-card nzTitle="Lateral">
+        <nz-upload [nzCustomRequest]="customReq">
+            <button nz-button  (click)="place='side'">
+              <i nz-icon nzType="upload"></i><span>Subir Imagen</span>
+            </button>
+          </nz-upload>
+          <nz-divider></nz-divider>
+          <div class="img-wrapper">
+            <app-img-card
+              *ngFor="let img of imagesSide"
+              alt=""
+              [imagen]="img"
+              (deleteImage)="onDelete($event)"
+            ></app-img-card>
+          </div>
+    </nz-card>
+  </div>
+</div>

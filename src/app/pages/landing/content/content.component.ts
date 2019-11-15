@@ -9,6 +9,7 @@ import { ProductoService } from "../../admin/productos/producto.service";
   styleUrls: ["./content.component.css"]
 })
 export class ContentComponent implements OnInit {
+
   productos$: Observable<Producto[]>;
   constructor(private productoService: ProductoService) {}
 

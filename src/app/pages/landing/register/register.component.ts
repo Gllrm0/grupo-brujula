@@ -49,7 +49,6 @@ export class RegisterComponent {
       const user = this.usuarioService
         .getUserByUsername(control.value)
         .then(user => {
-          console.log(user);
           if (user) {
             observer.next({ error: true, duplicated: true });
           } else {

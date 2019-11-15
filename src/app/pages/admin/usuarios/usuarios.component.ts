@@ -19,13 +19,11 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.usuarioService.list();
-    console.log(this.data);
   }
   cambiarEstado(data: any) {
     this.usuarioService.cambiarEstado(data);
   }
   confirm(data) {
-    console.log("do it", data);
     this.nzMessageService.info("Eliminado!");
     this.usuarioService.cambiarEstado(data);
   }

@@ -45,7 +45,7 @@ export class MensajesComponent implements OnInit {
       this.data = mensajes;
       this.list = mensajes as any;
       this.initLoading = false;
-      console.log(mensajes);
+
     });
   }
 
@@ -54,7 +54,6 @@ export class MensajesComponent implements OnInit {
   }
 
   async showMessage(item) {
-    console.log("load", item);
     this.user = await this.usuarioService.getUserByEmail(item.email);
     this.mensajesService.markAsRead(item.id);
     this.message = item;
@@ -64,7 +63,6 @@ export class MensajesComponent implements OnInit {
   markUnmarkAsRead(item: any) {
     const newStatus = !item.isRead || false;
     item.isRead = newStatus;
-    // console.log("e", id);
     this.mensajesService.markAsRead(item.id, newStatus).then(res => {
       this.msg.success("Hecho!");
     });

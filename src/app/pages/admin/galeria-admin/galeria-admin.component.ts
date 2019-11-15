@@ -13,7 +13,7 @@ import { Lightbox, IAlbum } from "ngx-lightbox";
   templateUrl: "./galeria-admin.component.html",
   styleUrls: ["./galeria-admin.component.css"]
 })
-export class GaleriaAdminComponent implements OnInit, OnChanges, OnDestroy {
+export class GaleriaAdminComponent implements OnInit, OnDestroy {
   images: Observable<Imagen[]>;
   products: Observable<Producto[]>;
   albums: IAlbum[];
@@ -25,8 +25,6 @@ export class GaleriaAdminComponent implements OnInit, OnChanges, OnDestroy {
     private lightbox: Lightbox
   ) {
     this.galeriaService.getAlbums().subscribe(albums => (this.albums = albums));
-
-    console.log("lozcinb,", this.albums);
   }
 
   async ngOnInit() {
@@ -35,13 +33,7 @@ export class GaleriaAdminComponent implements OnInit, OnChanges, OnDestroy {
     this.products = this.productoService.getProducts();
   }
 
-  ngOnChanges(event) {
-    console.log(event);
-  }
-
   open(index: number): void {
-    console.log(index);
-
     // open lightbox
     this.lightbox.open(this.albums, 3);
   }

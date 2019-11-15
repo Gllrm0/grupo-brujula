@@ -1,0 +1,6 @@
+<nz-carousel nzAutoPlay>
+    <div nz-carousel-content *ngFor="let image of images">
+        <img [src]="image.downloadUrl" alt="">
+      <h3>{{ image.place }}</h3>
+    </div>
+  </nz-carousel>
