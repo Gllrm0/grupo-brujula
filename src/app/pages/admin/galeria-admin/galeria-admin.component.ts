@@ -35,7 +35,7 @@ export class GaleriaAdminComponent implements OnInit, OnDestroy {
 
   open(index: number): void {
     // open lightbox
-    this.lightbox.open(this.albums, 3);
+    this.lightbox.open(this.albums, index);
   }
 
   ngOnDestroy() {

@@ -1,9 +1,9 @@
 <div class="gallery-wrapper">
-  <div *ngFor="let img of images | async">
+  <div *ngFor="let img of images | async; let i = index">
     <card-img
       [img]="img"
       [tags]="products | async"
-      (open)="open(img)"
+      (open)="open(i)"
     ></card-img>
   </div>
 </div>
