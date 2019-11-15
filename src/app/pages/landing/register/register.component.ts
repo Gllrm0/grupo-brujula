@@ -91,7 +91,7 @@ export class RegisterComponent {
         [Validators.email, Validators.required],
         [this.emailAsyncValidator]
       ],
-      password: ["", [Validators.required]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
       confirm: ["", [this.confirmValidator]],
       nombres: ["", [Validators.required]],
       telefono: ["", [Validators.required]],

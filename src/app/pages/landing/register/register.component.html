@@ -93,7 +93,7 @@
         <nz-form-control
           [nzSpan]="12"
           nzHasFeedback
-          nzErrorTip="Por favor ingrese su contraseña"
+          [nzErrorTip]="passwordErrorTpl0"
         >
           <input
             nz-input
@@ -102,6 +102,14 @@
             (ngModelChange)="validateConfirmPassword()"
           />
         </nz-form-control>
+        <ng-template #passwordErrorTpl0 let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Por favor ingrese su contraseña
+            </ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">
+              Mínimo 6 caracteres
+            </ng-container>
+          </ng-template>
       </div>
     </nz-form-item>
     <nz-form-item>
